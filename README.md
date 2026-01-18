@@ -136,4 +136,32 @@ Crear la base de datos en MySQL antes de ejecutar el proyecto:
 ```sql
 CREATE DATABASE datanet;
 
+### ⚙️ Configuración (`application.properties`)
 
+```properties
+spring.application.name=Biblionet
+server.port=8080
+
+# Hibernate
+spring.jpa.hibernate.ddl-auto=update
+
+# MySQL
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/datanet?useSSL=false&serverTimezone=UTC
+spring.datasource.username=TU_USUARIO
+spring.datasource.password=TU_PASSWORD
+
+# Logs SQL
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+# Naming strategy
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+### ▶️ Ejecución
+* Ejecutar la clase BiblionetApplication
+* Acceder desde el navegador a:
+```
+http://localhost:8080/auth/login
