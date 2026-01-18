@@ -135,6 +135,7 @@ Crear la base de datos en MySQL antes de ejecutar el proyecto:
 
 ```sql
 CREATE DATABASE datanet;
+```
 
 ### ⚙️ Configuración (`application.properties`)
 
@@ -159,9 +160,11 @@ logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
 
 # Naming strategy
 spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+```
 
 ### ▶️ Ejecución
 * Ejecutar la clase BiblionetApplication
 * Acceder desde el navegador a:
 ```
-http://localhost:8080/auth/login
+http://localhost:8080/auth/login 
+```
