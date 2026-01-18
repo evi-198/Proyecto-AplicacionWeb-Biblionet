@@ -30,8 +30,8 @@ Es el encargado de la gestión global y supervisión del sistema. Sus funciones 
 * **Supervisión de Préstamos:** Monitoreo del flujo completo de registro y estado de los préstamos.
 * **Generación de Reportes:** Capacidad para generar 2 tipos de reportes especializados.
 * **Dashboard Inteligente:**
-* **6 KPI Cuantitativos:** Contadores en tiempo real para métricas clave del sistema.
-* **2 KPI Analíticos:** Visualización de datos mediante gráficos dinámicos para facilitar la toma de decisiones.
+    * **6 KPI Cuantitativos:** Contadores en tiempo real para métricas clave del sistema.
+    * **2 KPI Analíticos:** Visualización de datos mediante gráficos dinámicos para facilitar la toma de decisiones.
 
 <img width="1366" height="685" alt="image" src="https://github.com/user-attachments/assets/bcbede04-0bb7-4fa5-8b14-3f530db2214a" />
 
@@ -46,5 +46,16 @@ Este rol se enfoca en la operatividad diaria de la biblioteca y el control de lo
     * **2 KPI Analíticos:** Gráficos dinámicos que facilitan el monitoreo de préstamos basados en ejemplares específicos.
 
 <img width="1365" height="684" alt="image" src="https://github.com/user-attachments/assets/dad1b291-d77e-4d45-ab85-2ebb855b2cf1" />
+
+### 🎓 Docente / Alumno
+Este rol representa a los usuarios finales del sistema, enfocándose en el acceso a la información y el seguimiento personal:
+
+* **Consulta de Libros:** Acceso al catálogo completo con filtros por categorías para verificar disponibilidad.
+* **Historial Personal:** Seguimiento detallado de sus propios préstamos realizados a lo largo del tiempo.
+* **Dashboard de Usuario:**
+    * **3 KPI Cuantitativos:** Indicadores numéricos sobre su actividad en la biblioteca.
+    * **Historial de Interacciones:** Panel en tiempo real que detalla las **últimas 5 acciones** realizadas (consultas, filtros, etc.).
+
+<img width="1366" height="683" alt="image" src="https://github.com/user-attachments/assets/dbab77da-c102-42d6-a50f-b50b89afaf30" />
 
 
