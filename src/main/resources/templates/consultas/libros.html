@@ -1,0 +1,87 @@
+<div class="p-6">
+
+    <!-- TÍTULO -->
+    <h1 class="text-2xl font-bold text-purple-700 mb-6">
+        Consultar libros disponibles
+    </h1>
+
+    <!-- CONTENEDOR DEL FILTRO - COLOR APLICADO -->
+    <div class="overflow-x-auto border border-gray-700 rounded-lg bg-[#e7ebf3] text-gray-900 shadow-lg p-4 mb-6 max-w-5xl mx-auto">
+        <form th:action="@{/consultas/libros}" method="get"
+              class="flex flex-col md:flex-row gap-4 md:items-center">
+            
+            <!-- BUSCADOR POR TEXTO -->
+            <input type="text"
+                   name="texto"
+                   th:value="${texto}"
+                   placeholder="Ej. har, historia, java..."
+                   class="border border-gray-400 rounded px-3 py-2 text-sm bg-white text-gray-900 w-full md:w-auto">
+
+            <!-- SELECT DE CATEGORÍAS -->
+            <select name="categoriaId"
+                    class="border border-gray-400 rounded px-3 py-2 text-sm bg-white text-gray-900">
+                <option value="">Todas las categorías</option>
+                <option th:each="cat : ${categorias}"
+                        th:value="${cat.id}"
+                        th:text="${cat.nombreCategoria}"
+                        th:selected="${cat.id == categoriaId}">
+                </option>
+            </select>
+
+            <!-- BOTÓN BUSCAR -->
+            <button type="submit"
+                    class="px-3 py-2 border border-purple-500 text-purple-500 rounded 
+                           hover:bg-purple-500 hover:text-white transition text-sm self-start flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Buscar
+            </button>
+
+            <!-- BOTÓN LIMPIAR -->
+            <a th:href="@{/consultas/libros}"
+               class="px-3 py-2 border border-gray-500 text-gray-700 rounded 
+                      hover:bg-gray-500 hover:text-white transition text-sm self-start">
+                Limpiar filtros
+            </a>
+        </form>
+    </div>
+
+    <!-- CONTENEDOR DE LA TABLA - COLOR APLICADO -->
+    <div class="overflow-x-auto border border-gray-700 rounded-lg bg-[#e7ebf3] text-gray-900 shadow-lg max-w-5xl mx-auto">
+
+        <!-- Tabla -->
+        <table class="min-w-full">
+            <thead class="bg-[#d5d9e2] text-gray-800">
+                <tr>
+                    <th class="px-4 py-3 text-left">Título</th>
+                    <th class="px-4 py-3 text-left">Autor</th>
+                    <th class="px-4 py-3 text-left">Categoría</th>
+                    <th class="px-4 py-3 text-left">Editorial</th>
+                    <th class="px-4 py-3 text-left">Año</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-900">
+                <!-- CUANDO HAY RESULTADOS -->
+                <tr th:each="libro : ${libros}"
+                    class="border-b border-gray-300 hover:bg-[#f3f5f9] transition">
+                    <td class="px-4 py-3 font-medium" th:text="${libro.titulo}"></td>
+                    <td class="px-4 py-3" th:text="${libro.autor}"></td>
+                    <td class="px-4 py-3" th:text="${libro.categoria.nombreCategoria}"></td>
+                    <td class="px-4 py-3" th:text="${libro.editorial}"></td>
+                    <td class="px-4 py-3" th:text="${libro.anioPublicacion}"></td>
+                </tr>
+
+                <!-- CUANDO NO HAY RESULTADOS -->
+                <tr th:if="${#lists.isEmpty(libros)}">
+                    <td colspan="5" class="text-center py-4 text-gray-700">
+                        No se encontraron libros disponibles con los filtros aplicados.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+
+</div>

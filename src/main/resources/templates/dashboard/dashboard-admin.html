@@ -1,0 +1,182 @@
+<div th:fragment="dashboard-admin">
+
+    <h2 class="text-2xl font-bold text-blue-600 mb-6">
+        Dashboard Administrador
+    </h2>
+
+    <!-- ================= KPI ================= -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+        <!-- Total Usuarios -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow text-center flex flex-col items-center">
+            <div class="text-blue-400 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <p class="text-gray-400 text-sm">Total Usuarios Activos</p>
+            <h3 class="text-3xl font-bold text-blue-400"
+                th:text="${totalUsuarios}">0</h3>
+        </div>
+
+        <!-- Total Libros -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow text-center flex flex-col items-center">
+            <div class="text-blue-400 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 20l9-5-9-5-9 5 9 5z" />
+                </svg>
+            </div>
+            <p class="text-gray-400 text-sm">Total Libros</p>
+            <h3 class="text-3xl font-bold text-blue-400"
+                th:text="${libros}">0</h3>
+        </div>
+
+        <!-- Categorías -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow text-center flex flex-col items-center">
+            <div class="text-blue-400 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+            <p class="text-gray-400 text-sm">Categorías</p>
+            <h3 class="text-3xl font-bold text-blue-400"
+                th:text="${categorias}">0</h3>
+        </div>
+
+        <!-- Préstamos Registrados -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow text-center flex flex-col items-center">
+            <div class="text-blue-400 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M9 12h6m-6 4h6M9 8h6M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                </svg>
+            </div>
+            <p class="text-gray-400 text-sm">Préstamos Registrados</p>
+            <h3 class="text-3xl font-bold text-blue-400"
+                th:text="${prestamosRegistrados}">0</h3>
+        </div>
+
+        <!-- Préstamos Pendientes -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow text-center flex flex-col items-center">
+            <div class="text-blue-400 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <p class="text-gray-400 text-sm">Devoluciones Pendientes</p>
+            <h3 class="text-3xl font-bold text-blue-400"
+                th:text="${totalHistorialPrestamos}">0</h3>
+        </div>
+
+        <!-- Usuarios Sancionados -->
+        <div class="bg-gray-800 p-4 rounded-xl shadow text-center flex flex-col items-center">
+            <div class="text-blue-400 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" />
+                </svg>
+            </div>
+            <p class="text-gray-400 text-sm"> Sanciones (Alumnos / Docentes)</p>
+            <h3 class="text-3xl font-bold text-blue-400"
+                th:text="${usuariosSancionados}">0</h3>
+        </div>
+
+    </div>
+
+    <!-- ================= REPORTES LOS RECUADROS GRANDES ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Libros Más Prestados -->
+        <div class="bg-gray-800 p-6 rounded-xl shadow">
+            <h3 class="text-lg mb-4 text-blue-300">
+                Libros Más Prestados
+            </h3>
+            <canvas id="chartLibrosMasPrestados" class="w-full h-64"></canvas>
+        </div>
+
+        <!-- Usuarios Sancionados  -->
+        <div class="bg-gray-800 p-6 rounded-xl shadow">
+            <h3 class="text-lg mb-4 text-blue-300">
+                Usuarios Sancionados (Alumnos / Docentes)
+            </h3>
+            <canvas id="chartUsuariosSancionadosActivos" class="w-full h-64"></canvas>
+        </div>
+
+    </div>
+
+    <!-- ================= GRAFICOS ================= -->
+	
+	<script th:inline="javascript">
+	    /* ===============================
+	       Libros Más Prestados
+	    =============================== */
+
+	    const libros = /*[[${librosMasPrestados}]]*/ [];
+	    
+	    if (libros && libros.length > 0) {
+	        new Chart(
+	            document.getElementById('chartLibrosMasPrestados'),
+	            {
+	                type: 'bar',
+	                data: {
+	                    labels: libros.map(l => l.titulo),
+	                    datasets: [{
+	                        label: 'Préstamos',
+	                        data: libros.map(l => l.totalPrestamos),
+	                        backgroundColor: 'rgba(59, 130, 246, 0.5)'
+	                    }]
+	                },
+	                options: {
+	                    responsive: true,
+	                    scales: {
+	                        y: {
+	                            beginAtZero: true,
+	                            ticks: { precision: 0 }
+	                        }
+	                    }
+	                }
+	            }
+	        );
+	    } else {
+	        // Mostrar mensaje si no hay datos
+	        document.getElementById('chartLibrosMasPrestados').innerHTML = 
+	            '<p class="text-gray-400 text-center py-8">No hay datos disponibles</p>';
+	    }
+
+		/* ===============================
+		   Usuarios Sancionados vs Sin Sanción
+		   (SOLO Alumnos y Docentes)
+		=============================== */
+
+		// CAMBIA A (usa solo alumnos y docentes):
+		const alumnosDocentes = /*[[${alumnosDocentesActivos}]]*/ 0;          // ← NUEVA VARIABLE
+		const usuariosSancionados = /*[[${usuariosSancionados}]]*/ 0;         // ← MANTIENE (sancionados totales)
+		const usuariosSinSancion = Math.max(0, alumnosDocentes - usuariosSancionados); // ← CÁLCULO CORRECTO
+
+		    new Chart(
+		        document.getElementById('chartUsuariosSancionadosActivos'),
+		        {
+		            type: 'doughnut',
+		            data: {
+		                labels: ['Con Sanción', 'Sin Sanción'],
+		                datasets: [{
+		                    data: [usuariosSancionados, usuariosSinSancion],
+		                    backgroundColor: ['#ef4444', '#10b981']
+		                }]
+		            },
+		            options: {
+		                responsive: true
+		            }
+		        }
+		    );
+		</script>
+
+
+</div>

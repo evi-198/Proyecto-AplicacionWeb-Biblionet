@@ -1,0 +1,47 @@
+<!-- Título -->
+<h1 class="text-2xl font-bold text-purple-600 mb-6">
+    Devoluciones Pendientes
+</h1>
+
+<!-- Tabla -->
+<div class="overflow-x-auto border border-gray-700 rounded-lg bg-[#e7ebf3] text-gray-900 shadow-lg max-w-5xl mx-auto">
+    <table class="min-w-full">
+        <thead class="bg-[#d5d9e2] text-gray-800">
+            <tr>
+                <th class="px-4 py-3 text-left">Libro</th>
+                <th class="px-4 py-3 text-left">Ejemplar</th>
+                <th class="px-4 py-3 text-left">Usuario</th>
+                <th class="px-4 py-3 text-left">Fecha Préstamo</th>
+                <th class="px-4 py-3 text-left">Ubicación</th>
+                <th class="px-4 py-3 text-left">Estado</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-900">
+            <tr th:each="d : ${devolucionesPendientes}"
+                class="border-b border-gray-300 hover:bg-[#f3f5f9] transition">
+
+                <td class="px-4 py-3" th:text="${d.tituloLibro}"></td>
+                <td class="px-4 py-3" th:text="${d.codigoEjemplar}"></td>
+                <td class="px-4 py-3" th:text="${d.nombreUsuario}"></td>
+                <td class="px-4 py-3" th:text="${d.fechaPrestamo}"></td>
+                <td class="px-4 py-3" th:text="${d.ubicacionEjemplar}"></td>
+
+				<td class="px-4 py-3">
+				    <span class="px-2 py-1 rounded-full text-xs font-semibold
+				                 bg-gray-400 text-black"
+				          th:text="${d.estado}">
+				    </span>
+				</td>
+            </tr>
+
+            <!-- Mensaje cuando no hay datos -->
+            <tr th:if="${#lists.isEmpty(devolucionesPendientes)}">
+                <td colspan="6"
+                    class="text-center py-4 text-gray-700">
+                    No hay devoluciones pendientes 🎉
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

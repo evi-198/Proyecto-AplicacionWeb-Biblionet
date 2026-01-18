@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="p-6 max-w-4xl mx-auto">
+
+    <h1 class="text-2xl font-bold text-purple-500 mb-6">
+        Registrar Préstamo
+    </h1>
+
+    <!-- Mensajes -->
+    <div th:if="${exito}"
+         class="bg-green-100 text-green-700 px-4 py-2 rounded mb-4">
+        <span th:text="${exito}"></span>
+    </div>
+
+    <div th:if="${error}"
+         class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/prestamos/guardar}"
+          method="post"
+          onsubmit="return confirm('¿Confirmar registro del préstamo?')"
+          class="bg-gray-800 p-6 rounded-lg shadow-lg space-y-4">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Usuario -->
+            <div>
+                <label class="block text-gray-400 mb-1">
+                    Usuario (Alumno / Docente) *
+                </label>
+                <select name="usuarioId" required
+                        class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg
+                               text-gray-200 focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+                    <option value="" disabled selected>
+                        -- Seleccione un usuario --
+                    </option>
+                    <option th:each="u : ${usuarios}"
+                            th:value="${u.id}"
+                            th:text="${u.nombre + ' ' + u.apellido}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Libro -->
+            <div>
+                <label class="block text-gray-400 mb-1">
+                    Libro *
+                </label>
+                <select id="libroSelect" name="libroId" required
+                        class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg
+                               text-gray-200 focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+                    <option value="" disabled selected>
+                        -- Seleccione un libro --
+                    </option>
+                    <option th:each="l : ${libros}"
+                            th:value="${l.id}"
+                            th:text="${l.titulo}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Ejemplar -->
+            <div class="md:col-span-2">
+                <label class="block text-gray-400 mb-1">
+                    Ejemplar disponible *
+                </label>
+                <select id="ejemplarSelect"
+                        name="ejemplarId"
+                        required
+                        disabled
+                        class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg
+                               text-gray-200 focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+                    <option value="" disabled selected>
+                        -- Primero seleccione un libro --
+                    </option>
+                </select>
+            </div>
+
+            <!-- Fecha devolución -->
+            <div>
+                <label class="block text-gray-400 mb-1">
+                    Fecha de devolución *
+                </label>
+                <input type="date"
+                       name="fechaDevolucion"
+                       required
+                       class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg
+                              text-gray-200 focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+            </div>
+
+        </div>
+
+        <!-- Botones -->
+        <div class="flex justify-end gap-3 pt-6 border-t border-gray-700">
+            <a th:href="@{/prestamos/nuevo}"
+               class="px-4 py-2 border border-purple-500 text-purple-400 rounded-lg
+                      hover:bg-purple-500 hover:text-white transition">
+                Cancelar
+            </a>
+
+            <button type="submit"
+                    class="px-4 py-2 bg-purple-500 hover:bg-purple-600
+                           text-white rounded-lg font-semibold">
+                Registrar préstamo
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+document.getElementById('libroSelect').addEventListener('change', function () {
+    const libroId = this.value;
+    const ejemplarSelect = document.getElementById('ejemplarSelect');
+
+    ejemplarSelect.disabled = true;
+    ejemplarSelect.innerHTML = `
+        <option disabled selected>
+            Cargando ejemplares...
+        </option>`;
+
+    if (!libroId) {
+        ejemplarSelect.innerHTML = `
+            <option disabled selected>
+                -- Primero seleccione un libro --
+            </option>`;
+        return;
+    }
+
+    fetch(`/prestamos/ejemplares-disponibles/${libroId}`)
+        .then(response => {
+            // 👇 VERIFICA SI LA RESPUESTA ES EXITOSA
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // 🔴 CASO: NO HAY EJEMPLARES
+            if (!data || data.length === 0) {
+                ejemplarSelect.innerHTML = `
+                    <option disabled selected>
+                        ❌ No hay ejemplares disponibles para este libro
+                    </option>`;
+                ejemplarSelect.disabled = true;
+                return;
+            }
+
+            // 🟢 CASO: HAY EJEMPLARES
+            let options = `
+                <option value="" disabled selected>
+                    -- Seleccione un ejemplar --
+                </option>`;
+
+            data.forEach(e => {
+                options += `
+                    <option value="${e.id}">
+                        Ejemplar #${e.id}
+                    </option>`;
+            });
+
+            ejemplarSelect.innerHTML = options;
+            ejemplarSelect.disabled = false;
+        })
+       
+});
+</script>
+
+
+</body>
+</html>

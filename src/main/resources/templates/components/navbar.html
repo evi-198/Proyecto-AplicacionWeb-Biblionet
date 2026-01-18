@@ -1,0 +1,20 @@
+<div th:fragment="navbar" class="w-full bg-gray-800 border-b border-gray-700 p-4 flex justify-between">
+    
+    <!-- Título Biblionet en índigo -->
+    <h1 class="text-lg font-semibold text-blue-500">Biblionet</h1>
+
+    <div class="flex items-center gap-3">
+
+        <!-- Usuario logeado -->
+		<span th:if="${session.usuario}" 
+		      th:text="${session.usuario.usuarioLogin}" 
+		      class="text-gray-300">
+		</span>
+
+        <!-- Botón cerrar sesión -->
+        <a th:href="@{/auth/login}" 
+           class="text-red-400 hover:text-red-300 text-sm font-semibold">
+            Cerrar sesión
+        </a>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<!-- Sidebar Alumno -->
+<div th:fragment="sidebar-alumno"
+     th:if="${session.usuario != null and session.usuario.rol.nombre == 'Alumno'}"
+     class="w-64 h-screen bg-gray-900 text-gray-300 flex flex-col fixed left-0 top-0 border-r border-gray-800">
+
+    <div class="p-6 border-b border-gray-800">
+        <h1 class="text-2xl font-bold text-purple-600 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.84 6.915c-2.58 1.38-5.16 2.76-7.74 4.14-2.58-1.38-5.16-2.76-7.74-4.14a12.083 12.083 0 01.84-6.915L12 14z" />
+            </svg>
+            Alumno
+        </h1>
+    </div>
+
+    <nav class="flex-1 p-4 space-y-2 text-sm">
+
+        <a th:href="@{/dashboard/alumno}" class="block px-3 py-2 rounded hover:bg-gray-800 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18v18H3V3z" />
+            </svg>
+            Dashboard
+        </a>
+
+        <p class="text-gray-500 text-xs mt-4 mb-1 uppercase tracking-wider">Consultas</p>
+
+        <a th:href="@{/consultas/libros}" class="block px-3 py-2 rounded hover:bg-gray-800 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20l9-5-9-5-9 5 9 5z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12l9-5-9-5-9 5 9 5z" />
+            </svg>
+            Consultar libros
+        </a>
+        <a th:href="@{/consultas/mi-historial}" class="block px-3 py-2 rounded hover:bg-gray-800 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z" />
+            </svg>
+            Mi historial
+        </a>
+
+    </nav>
+</div>

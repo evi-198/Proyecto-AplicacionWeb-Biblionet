@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div class="p-6 max-w-4xl mx-auto">
+
+    <h1 class="text-2xl font-bold text-purple-700 mb-6">Detalle Usuario</h1>
+
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg space-y-4 text-gray-200">
+        
+        <!-- Información básica -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <span class="font-medium text-gray-400">ID:</span>
+                <span th:text="${usuario.id}"></span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-400">Usuario Login:</span>
+                <span th:text="${usuario.usuarioLogin}"></span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <span class="font-medium text-gray-400">Nombre:</span>
+                <span th:text="${usuario.nombre}"></span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-400">Apellido:</span>
+                <span th:text="${usuario.apellido}"></span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <span class="font-medium text-gray-400">DNI:</span>
+                <span th:text="${usuario.dni}"></span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-400">Correo:</span>
+                <span th:text="${usuario.correo != null ? usuario.correo : 'No registrado'}"></span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <span class="font-medium text-gray-400">Teléfono:</span>
+                <span th:text="${usuario.telefono != null ? usuario.telefono : 'No registrado'}"></span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-400">Dirección:</span>
+                <span th:text="${usuario.direccion != null ? usuario.direccion : 'No registrada'}"></span>
+            </div>
+        </div>
+
+        <!-- Información del sistema -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-700">
+            <div>
+                <span class="font-medium text-gray-400">Rol:</span>
+                <span th:text="${usuario.rol.nombre}"></span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-400">Origen:</span>
+                <span th:switch="${usuario.origen.name()}">
+                    <span th:case="'empleado'" class="px-2 py-1 bg-blue-200 text-blue-900 rounded text-sm">Empleado</span>
+                    <span th:case="'usuario'" class="px-2 py-1 bg-gray-200 text-gray-900 rounded text-sm">Usuario</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <span class="font-medium text-gray-400">Estado:</span>
+                <span th:switch="${usuario.estado.name()}">
+                    <span th:case="'activo'" class="px-2 py-1 bg-green-200 text-green-900 rounded text-sm">Activo</span>
+                    <span th:case="'inactivo'" class="px-2 py-1 bg-red-200 text-red-900 rounded text-sm">Inactivo</span>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="flex justify-end gap-3 mt-6">
+        <a th:href="@{/admin/usuarios}"
+           class="px-4 py-2 border border-purple-500 text-purple-400 rounded-lg hover:bg-purple-500 hover:text-white transition">
+            ← Volver a la lista
+        </a>
+        <a th:href="@{'/admin/usuarios/editar/' + ${usuario.id}}"
+           class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg font-semibold">
+            Editar Usuario
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

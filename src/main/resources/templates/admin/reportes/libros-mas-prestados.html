@@ -1,0 +1,82 @@
+<div class="p-6">
+
+    <!-- Título -->
+	<div class="flex items-center justify-between mb-6">
+	    <h1 class="text-2xl font-bold text-purple-700">
+	        Libros Más Prestados
+	    </h1>
+
+	</div>
+
+    <!-- CONTENEDOR DEL FILTRO - COLOR ORIGINAL -->
+    <div class="overflow-x-auto border border-gray-700 rounded-lg bg-[#e7ebf3] text-gray-900 shadow-lg p-4 mb-6 max-w-5xl mx-auto">
+        <form method="get"
+              th:action="@{/admin/reportes/libros-mas-prestados}"
+              class="flex flex-col md:flex-row gap-4 md:items-center">
+            
+            <select name="categoriaId"
+                    class="border border-gray-400 rounded px-3 py-2 text-sm bg-white text-gray-900">
+                <option value="">Todas las categorias</option>
+                <option th:each="cat : ${categorias}"
+                        th:value="${cat.id}"
+                        th:text="${cat.nombreCategoria}"
+                        class="text-gray-900">
+                </option>
+            </select>
+
+            <button type="submit"
+                    class="px-3 py-2 border border-purple-500 text-purple-500 rounded 
+                           hover:bg-purple-500 hover:text-white transition text-sm self-start flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Buscar
+            </button>
+        </form>
+    </div>
+		
+    <!-- CONTENEDOR DE LA TABLA - COLOR ORIGINAL -->
+    <div class="overflow-x-auto border border-gray-700 rounded-lg bg-[#e7ebf3] text-gray-900 shadow-lg max-w-5xl mx-auto">
+
+        <!-- Tabla -->
+        <table class="min-w-full">
+            <thead class="bg-[#d5d9e2] text-gray-800">
+                <tr>
+                    <th class="px-4 py-3 text-left">#</th>
+                    <th class="px-4 py-3 text-left">Libro</th>
+                    <th class="px-4 py-3 text-left">Categoría</th>
+                    <th class="px-4 py-3 text-center">Total Préstamos</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-900">
+                <tr th:each="libro, stat : ${librosMasPrestados}"
+                    class="border-b border-gray-300 hover:bg-[#f3f5f9] transition">
+                    
+                    <td class="px-4 py-3" th:text="${stat.count}"></td>
+                    
+                    <td class="px-4 py-3"
+                        th:text="${libro.titulo}">
+                    </td>
+                    
+                    <td class="px-4 py-3"
+                        th:text="${libro.nombreCategoria}">
+                    </td>
+                    
+                    <td class="px-4 py-3 text-center font-semibold"
+                        th:text="${libro.totalPrestamos}">
+                    </td>
+                </tr>
+                
+                <tr th:if="${#lists.isEmpty(librosMasPrestados)}">
+                    <td colspan="4"
+                        class="text-center py-4 text-gray-700">
+                        No existen préstamos registrados
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+
+</div>
