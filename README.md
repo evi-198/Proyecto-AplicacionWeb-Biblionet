@@ -47,7 +47,7 @@ Este rol se enfoca en la operatividad diaria de la biblioteca y el control de lo
 
 <img width="1365" height="684" alt="image" src="https://github.com/user-attachments/assets/dad1b291-d77e-4d45-ab85-2ebb855b2cf1" />
 
-### 🎓 Docente / Alumno
+### 🎓 Docente / Alumnos
 Este rol representa a los usuarios finales del sistema, enfocándose en el acceso a la información y el seguimiento personal:
 
 * **Consulta de Libros:** Acceso al catálogo completo con filtros por categorías para verificar disponibilidad.
