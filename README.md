@@ -4,7 +4,7 @@
 
 Permite administrar libros, ejemplares, usuarios, préstamos y reportes, organizando la funcionalidad por roles y priorizando el orden, la mantenibilidad y las buenas prácticas de desarrollo.
 
-El proyecto fue **desarrollado de forma autónoma con fines académicos**, aplicando una arquitectura clara y decisiones técnicas coherentes.
+El proyecto fue **desarrollado de forma autónoma para fines académicos**, aplicando una arquitectura clara y decisiones técnicas coherentes.
 
 La gestión de autenticación y roles se implementó mediante **sesiones HTTP** (`HttpSession`), sin utilizar **Spring Security**, con el objetivo de comprender y controlar directamente el manejo de sesiones y la lógica de acceso.
 
@@ -57,5 +57,26 @@ Este rol representa a los usuarios finales del sistema, enfocándose en el acces
     * **Historial de Interacciones:** Panel en tiempo real que detalla las **últimas 5 acciones** realizadas (consultas, filtros, etc.).
 
 <img width="1366" height="683" alt="image" src="https://github.com/user-attachments/assets/dbab77da-c102-42d6-a50f-b50b89afaf30" />
+
+## 3. Funcionalidades Principales
+
+* Gestión de Usuarios, libros y categorías.
+* Registro y control de préstamos.
+* Generación de reportes.
+* Historial de préstamos por usuario.
+* Dashboards por rol.
+* Reportes administrativos (libros más prestados, usuarios sancionados, devoluciones pendientes)
+* Validaciones de disponibilidad y sanciones.
+
+## 4. Tecnologías Utilizadas
+
+* Java 17
+* Spring Boot
+* Spring Data JPA
+* Thymeleaf
+* Tailwind CSS (CDN)
+* MySQL
+* Maven
+  
 
 
