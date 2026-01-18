@@ -77,6 +77,30 @@ Este rol representa a los usuarios finales del sistema, enfocándose en el acces
 * Tailwind CSS (CDN)
 * MySQL
 * Maven
+
+## 5. Arquitectura y Decisiones Clave
+
+* Arquitectura **MVC** con **Spring Boot**
+* Controladores delgados, sin lógica de negocio
+* Lógica centralizada en la capa **Service**
+* Uso de **DTOs** para reportes y consultas complejas
+* Reutilización de vistas mediante un **layout** único (`layout/dashboard`)
+* Inyección dinámica de contenido en vistas según el rol
+* Separación clara entre autenticación y lógica de negocio
+
+Estas decisiones permiten que el sistema sea fácil de mantener, extender y comprender.
+
+## 6. Arquitectura en Capas
+
+El proyecto sigue una **arquitectura en capas**, con responsabilidades bien definidas para garantizar orden, mantenibilidad y escalabilidad.
+
+El flujo general del sistema es el siguiente:
+
+* **Controller:** recibe las solicitudes HTTP, valida el contexto de sesión y delega la lógica al servicio correspondiente. No contiene lógica de negocio.
+* **Service:** concentra la lógica de negocio del sistema y coordina las operaciones necesarias según el caso de uso.
+* **Repository:** se encarga del acceso a datos mediante JPA, gestionando consultas y persistencia de las entidades.
+* **Model / Entity:** representa las entidades del dominio y la estructura de la base de datos.
+* **DTOs:** se utilizan cuando se requieren respuestas optimizadas o reportes específicos, evitando exponer directamente las entidades.
   
 
 
