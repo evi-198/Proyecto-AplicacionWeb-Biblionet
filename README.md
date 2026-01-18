@@ -29,9 +29,22 @@ Es el encargado de la gestión global y supervisión del sistema. Sus funciones 
 * **Gestión Integral:** Control total sobre usuarios, inventario de libros y categorías.
 * **Supervisión de Préstamos:** Monitoreo del flujo completo de registro y estado de los préstamos.
 * **Generación de Reportes:** Capacidad para generar 2 tipos de reportes especializados.
-* **Dashboard Inteligente:** * **6 KPI Cuantitativos:** Contadores en tiempo real para métricas clave del sistema.
-    * **2 KPI Analíticos:** Visualización de datos mediante gráficos dinámicos para facilitar la toma de decisiones.
+* **Dashboard Inteligente:**
+* **6 KPI Cuantitativos:** Contadores en tiempo real para métricas clave del sistema.
+* **2 KPI Analíticos:** Visualización de datos mediante gráficos dinámicos para facilitar la toma de decisiones.
 
 <img width="1366" height="685" alt="image" src="https://github.com/user-attachments/assets/bcbede04-0bb7-4fa5-8b14-3f530db2214a" />
+
+### 📚 Bibliotecario
+Este rol se enfoca en la operatividad diaria de la biblioteca y el control de los ejemplares. Sus responsabilidades son:
+
+* **Gestión de Inventario:** Control directo sobre los libros y las categorías del sistema.
+* **Control de Préstamos:** Supervisión del flujo completo de registro y seguimiento de préstamos.
+* **Reportes Operativos:** Generación de un tipo de reporte específico para la gestión de la biblioteca.
+* **Dashboard de Monitoreo:**
+    * **3 KPI Cuantitativos:** Contadores en tiempo real para métricas operativas.
+    * **2 KPI Analíticos:** Gráficos dinámicos que facilitan el monitoreo de préstamos basados en ejemplares específicos.
+
+<img width="1365" height="684" alt="image" src="https://github.com/user-attachments/assets/dad1b291-d77e-4d45-ab85-2ebb855b2cf1" />
 
 
