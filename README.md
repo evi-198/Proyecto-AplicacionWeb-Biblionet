@@ -119,5 +119,21 @@ El flujo implementado incluye:
 
 <img width="1366" height="686" alt="image" src="https://github.com/user-attachments/assets/fb09a4e4-bb48-4c52-9238-7e10df8da264" />
 
+## 8. Ejecución del proyecto
+
+### 🔧 Requisitos
+- Java JDK 17
+- Maven
+- MySQL 8
+- Git
+- Entorno de desarrollo:
+  - IntelliJ IDEA (recomendado)
+  - Visual Studio Code (válido con extensiones Java)
+
+### 🗄️ Base de datos
+Crear la base de datos en MySQL antes de ejecutar el proyecto:
+
+```sql
+CREATE DATABASE datanet;
 
 
