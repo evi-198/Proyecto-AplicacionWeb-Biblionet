@@ -101,6 +101,23 @@ El flujo general del sistema es el siguiente:
 * **Repository:** se encarga del acceso a datos mediante JPA, gestionando consultas y persistencia de las entidades.
 * **Model / Entity:** representa las entidades del dominio y la estructura de la base de datos.
 * **DTOs:** se utilizan cuando se requieren respuestas optimizadas o reportes específicos, evitando exponer directamente las entidades.
-  
+
+## 7. Flujo de Registro de Préstamos
+
+El registro de préstamos se diseñó considerando la lógica real de una biblioteca.
+
+El préstamo se realiza sobre un **ejemplar específico** y no directamente sobre el libro, permitiendo un control correcto de la disponibilidad.
+
+El flujo implementado incluye:
+
+* Selección de un usuario ya sea docente o alumno que este activo
+* Selección del libro solicitado
+* Carga de ejemplares disponibles según el libro escogido
+* validaciones de disponibilidad y estado del usuario
+* Escoger la fecha de devolución con la regla de solo fechas en adelante de la actual
+* registro del préstamo y actualización del estado del ejemplar.
+
+<img width="1366" height="686" alt="image" src="https://github.com/user-attachments/assets/fb09a4e4-bb48-4c52-9238-7e10df8da264" />
+
 
 
